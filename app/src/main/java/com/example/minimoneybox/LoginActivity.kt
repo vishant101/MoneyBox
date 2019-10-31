@@ -49,32 +49,29 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.input_valid, Toast.LENGTH_LONG).show()
             }
         }
+
+
     }
 
     private fun allFieldsValid() : Boolean {
-        var allValid = true
+        var allValid = false
 
-        if (!Pattern.matches(EMAIL_REGEX, et_email.text.toString())) {
+        if (Pattern.matches(EMAIL_REGEX, et_email.text.toString())) {
+            allValid = true
+        } else {
             til_email.error = getString(R.string.email_address_error)
-            allValid = false
-        } else {
-            til_email.error = null
         }
 
-        if (!Pattern.matches(PASSWORD_REGEX, et_password.text.toString())) {
+        if (Pattern.matches(PASSWORD_REGEX, et_password.text.toString())) {
+            allValid = true
+        } else {
             til_password.error = getString(R.string.password_error)
-            allValid = false
-        } else {
-            til_password.error = null
         }
 
-        if(et_name.text.isNotEmpty()) {
-            if (!Pattern.matches(NAME_REGEX, et_name.text.toString())) {
-                allValid = false
-                til_name.error = getString(R.string.full_name_error)
-            }
+        if (Pattern.matches(NAME_REGEX, et_password.text.toString())) {
+            allValid = true
         } else {
-            til_name.error = null
+            til_email.error = getString(R.string.full_name_error)
         }
 
         return allValid
