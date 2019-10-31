@@ -1,15 +1,17 @@
-package com.example.minimoneybox
+package com.example.minimoneybox.view
 
 import android.animation.Animator
-import android.animation.Animator.AnimatorListener
 import android.animation.AnimatorListenerAdapter
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.TextInputLayout
+
+
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
+import com.example.minimoneybox.R
+import com.google.android.material.textfield.TextInputLayout
 import java.util.regex.Pattern
 
 /**
