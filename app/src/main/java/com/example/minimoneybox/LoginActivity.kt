@@ -1,5 +1,8 @@
 package com.example.minimoneybox
 
+import android.animation.Animator
+import android.animation.Animator.AnimatorListener
+import android.animation.AnimatorListenerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TextInputLayout
@@ -81,7 +84,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupAnimation() {
+        pigAnimation.setMinAndMaxFrame(firstAnim.first, firstAnim.second)
         pigAnimation.playAnimation()
+
+        pigAnimation.addAnimatorListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                pigAnimation.setMinAndMaxFrame(secondAnim.first, secondAnim.second)
+                pigAnimation.playAnimation()
+            }
+        })
+
     }
 
     companion object {
