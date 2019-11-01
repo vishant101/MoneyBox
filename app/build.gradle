@@ -12,6 +12,9 @@ repositories {
 
 android {
     compileSdkVersion 29
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.example.minimoneybox"
         minSdkVersion 21
