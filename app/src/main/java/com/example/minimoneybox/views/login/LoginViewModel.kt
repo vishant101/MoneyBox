@@ -1,10 +1,12 @@
-package com.example.minimoneybox.viewmodel
+package com.example.minimoneybox.views.login
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.minimoneybox.model.LoginParameters
+import com.example.minimoneybox.model.UserProfile
 import com.example.minimoneybox.network.AccountApi
 import com.example.minimoneybox.utils.*
+import com.example.minimoneybox.views.base.BaseViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -12,7 +14,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.regex.Pattern
 import javax.inject.Inject
 
-class LoginViewModel():BaseViewModel() {
+class LoginViewModel: BaseViewModel() {
 
     @Inject
     lateinit var accountApi: AccountApi
@@ -20,6 +22,7 @@ class LoginViewModel():BaseViewModel() {
     val emailErrorMessage:MutableLiveData<String> = MutableLiveData()
     val passwordErrorMessage:MutableLiveData<String> = MutableLiveData()
     val nameErrorMessage:MutableLiveData<String> = MutableLiveData()
+    val loggedIn: MutableLiveData<Boolean> = MutableLiveData()
 
     var toastStatus = MutableLiveData<Boolean?>()
 
@@ -35,28 +38,30 @@ class LoginViewModel():BaseViewModel() {
     }
 
     fun login() {
-        if (allFieldsValid()) {
+        //if (allFieldsValid()) {
             this.toastStatus.value = true
 
             subscription = Observable.fromCallable{}
                 .concatMap {
                     accountApi.loginUser(
                         LoginParameters(
-                            enteredUserEmail.value.toString(),
-                            enteredUserPassword.value.toString(),
+//                            enteredUserEmail.value.toString(),
+//                            enteredUserPassword.value.toString(),
+                            "androidtest@moneyboxapp.com",
+                            "P455word12",
                             IFDA
                         )
                     )
                 }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { }
-                .doOnTerminate { }
+                .doOnSubscribe { setIsLoading(true) }
+                .doOnTerminate { setIsLoading(false) }
                 .subscribe(
-                    { result -> Log.i("RESULT", result.toString()) },
+                    { result -> onLoginSuccess(result) },
                     { error -> Log.e("RESULT", error.toString()) }
                 )
-        }
+       // }
     }
 
     fun allFieldsValid() : Boolean {
@@ -98,5 +103,10 @@ class LoginViewModel():BaseViewModel() {
 
     fun onNameChange(s: CharSequence) {
         enteredUserName.value = s.toString()
+    }
+
+    private fun onLoginSuccess(result: UserProfile){
+        Log.i("RESULT", result.toString())
+        loggedIn.value =  true
     }
 }

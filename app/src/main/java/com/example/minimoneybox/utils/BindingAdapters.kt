@@ -3,15 +3,12 @@ package com.example.minimoneybox.utils
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Build
-import android.transition.TransitionManager
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
-import com.example.minimoneybox.viewmodel.LoginViewModel
 import com.google.android.material.textfield.TextInputLayout
 
 
