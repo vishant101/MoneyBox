@@ -37,12 +37,15 @@ fun setErrorMessage(view: TextInputLayout, errorMessage:  MutableLiveData<String
 @RequiresApi(Build.VERSION_CODES.KITKAT)
 @BindingAdapter("animate")
 fun animate(target: LottieAnimationView, isVisible: Boolean) {
-    target.setMinAndMaxFrame(LoginViewModel.firstAnim.first, LoginViewModel.firstAnim.second)
+    val firstAnim = 0 to 109
+    val secondAnim = 131 to 158
+
+    target.setMinAndMaxFrame(firstAnim.first, firstAnim.second)
     target.playAnimation()
 
     target.addAnimatorListener(object : AnimatorListenerAdapter() {
         override fun onAnimationEnd(animation: Animator?) {
-            target.setMinAndMaxFrame(LoginViewModel.secondAnim.first, LoginViewModel.secondAnim.second)
+            target.setMinAndMaxFrame(secondAnim.first, secondAnim.second)
             target.playAnimation()
         }
     })

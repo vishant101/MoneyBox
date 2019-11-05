@@ -11,4 +11,7 @@ const val PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[A-Z]).{10,50}$"
 // ERRORS
 const val EMAIL_ADDRESS_ERROR = "Please enter a correct email address"
 const val PASSWORD_ERROR = "Please enter a correct password"
-const val FULLNAME_ERROR = "Please enter your full name"
+const val FULL_NAME_ERROR = "Please enter your full name"
+
+// PARAMETERS
+const val IFDA = "ANYTHING"

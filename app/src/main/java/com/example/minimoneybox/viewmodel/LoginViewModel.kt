@@ -1,21 +1,25 @@
 package com.example.minimoneybox.viewmodel
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.view.View
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.airbnb.lottie.LottieAnimationView
-import com.example.minimoneybox.R
+import com.example.minimoneybox.model.LoginParameters
+import com.example.minimoneybox.network.AccountApi
 import com.example.minimoneybox.utils.*
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import java.util.regex.Pattern
+import javax.inject.Inject
 
-class LoginViewModel:BaseViewModel() {
+class LoginViewModel():BaseViewModel() {
 
+    @Inject
+    lateinit var accountApi: AccountApi
     val errorMessage: MutableLiveData<Int> = MutableLiveData()
     val emailErrorMessage:MutableLiveData<String> = MutableLiveData()
     val passwordErrorMessage:MutableLiveData<String> = MutableLiveData()
     val nameErrorMessage:MutableLiveData<String> = MutableLiveData()
-    val errorClickListener = View.OnClickListener {  }
 
     var toastStatus = MutableLiveData<Boolean?>()
 
@@ -23,16 +27,39 @@ class LoginViewModel:BaseViewModel() {
     private val enteredUserPassword = MutableLiveData<String>()
     private val enteredUserName = MutableLiveData<String>()
 
-    lateinit var pigAnimation : LottieAnimationView
+    private lateinit var subscription: Disposable
 
+    override fun onCleared() {
+        super.onCleared()
+        subscription.dispose()
+    }
 
     fun login() {
         if (allFieldsValid()) {
             this.toastStatus.value = true
+
+            subscription = Observable.fromCallable{}
+                .concatMap {
+                    accountApi.loginUser(
+                        LoginParameters(
+                            enteredUserEmail.value.toString(),
+                            enteredUserPassword.value.toString(),
+                            IFDA
+                        )
+                    )
+                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { }
+                .doOnTerminate { }
+                .subscribe(
+                    { result -> Log.i("RESULT", result.toString()) },
+                    { error -> Log.e("RESULT", error.toString()) }
+                )
         }
     }
 
-    private fun allFieldsValid() : Boolean {
+    fun allFieldsValid() : Boolean {
         var allValid = true
 
         if (!Pattern.matches(EMAIL_REGEX, enteredUserEmail.value.toString())) {
@@ -52,25 +79,13 @@ class LoginViewModel:BaseViewModel() {
         if(!enteredUserName.value.isNullOrEmpty()) {
             if (!Pattern.matches(NAME_REGEX, enteredUserName.value.toString())) {
                 allValid = false
-                nameErrorMessage.value = FULLNAME_ERROR
+                nameErrorMessage.value = FULL_NAME_ERROR
             }
         } else {
             nameErrorMessage.value = null
         }
 
         return allValid
-    }
-
-    private fun setupAnimation() {
-        pigAnimation.setMinAndMaxFrame(firstAnim.first, firstAnim.second)
-        pigAnimation.playAnimation()
-
-        pigAnimation.addAnimatorListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator?) {
-                pigAnimation.setMinAndMaxFrame(secondAnim.first, secondAnim.second)
-                pigAnimation.playAnimation()
-            }
-        })
     }
 
     fun onEmailChange(s: CharSequence) {
@@ -83,10 +98,5 @@ class LoginViewModel:BaseViewModel() {
 
     fun onNameChange(s: CharSequence) {
         enteredUserName.value = s.toString()
-    }
-
-    companion object {
-        val firstAnim = 0 to 109
-        val secondAnim = 131 to 158
     }
 }
