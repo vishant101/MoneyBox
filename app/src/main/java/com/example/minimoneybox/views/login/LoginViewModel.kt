@@ -2,8 +2,9 @@ package com.example.minimoneybox.views.login
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.minimoneybox.model.LoginParameters
-import com.example.minimoneybox.model.UserProfile
+import com.example.minimoneybox.data.manager.AppDataManager
+import com.example.minimoneybox.data.model.LoginParameters
+import com.example.minimoneybox.data.model.UserProfile
 import com.example.minimoneybox.network.AccountApi
 import com.example.minimoneybox.utils.*
 import com.example.minimoneybox.views.base.BaseViewModel
@@ -107,6 +108,13 @@ class LoginViewModel: BaseViewModel() {
 
     private fun onLoginSuccess(result: UserProfile){
         Log.i("RESULT", result.toString())
+        AppDataManager
+            .updateUserInfo(
+                result.Session.BearerToken,
+                result.User.UserId,
+                enteredUserName.value.toString(),
+                enteredUserEmail.value.toString()
+            )
         loggedIn.value =  true
     }
 }

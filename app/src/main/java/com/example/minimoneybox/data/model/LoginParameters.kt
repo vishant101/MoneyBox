@@ -1,4 +1,4 @@
-package com.example.minimoneybox.model
+package com.example.minimoneybox.data.model
 
 data class LoginParameters (
     val Email: String,

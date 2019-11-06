@@ -11,20 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.textfield.TextInputLayout
 
-
-
-
 @BindingAdapter("adapter")
 fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     view.adapter = adapter
 }
 
-
 @BindingAdapter("goneUnless")
 fun goneUnless(view: View, visible: Boolean) {
     view.visibility = if (visible) View.VISIBLE else View.INVISIBLE
 }
-
 
 @BindingAdapter("errorMessage")
 fun setErrorMessage(view: TextInputLayout, errorMessage:  MutableLiveData<String>?) {
