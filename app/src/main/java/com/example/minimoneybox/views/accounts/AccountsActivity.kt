@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.minimoneybox.R
 import com.example.minimoneybox.databinding.ActivityAccountsBinding
 import com.example.minimoneybox.injection.ViewModelFactory
@@ -20,6 +21,7 @@ class AccountsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_accounts)
+        binding.accountList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(AccountsViewModel::class.java)
         binding.viewModel = viewModel
