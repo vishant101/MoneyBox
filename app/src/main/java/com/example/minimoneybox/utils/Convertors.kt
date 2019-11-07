@@ -9,7 +9,7 @@ import com.google.gson.reflect.TypeToken
 class Converters {
     private val gson = Gson()
     private val productType = object: TypeToken<Product>() {}.type
-    private val investorAccountType = object: TypeToken<InvestorProducts>() {}.type
+    private val investorAccountType = object: TypeToken<InvestorAccount>() {}.type
     private val personalisationType = object: TypeToken<Personalisation>() {}.type
 
     @TypeConverter

@@ -34,22 +34,22 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
 
         subscription = Observable.fromCallable{ productDao.all }
             .concatMap {
-                accountApi.getAccounts( AppDataManager.getBearerToken() )
-//                    dbAccountList ->
-//                if(dbAccountList.isEmpty())
-//                    accountApi.getAccounts( AppDataManager.getBearerToken() ).concatMap {
-//                            apiAccountList -> productDao.insertAll(*apiAccountList.ProductResponses.toTypedArray())
-//                        Observable.just(apiAccountList.ProductResponses)
-//                    }
-//                else
-//                    Observable.just(dbAccountList)
+
+                    dbAccountList ->
+                if(dbAccountList.isEmpty())
+                    accountApi.getAccounts( AppDataManager.getBearerToken() ).concatMap {
+                            apiAccountList -> productDao.insertAll(*apiAccountList.ProductResponses.toTypedArray())
+                        Observable.just(apiAccountList.ProductResponses)
+                    }
+                else
+                    Observable.just(dbAccountList)
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { setIsLoading(true) }
             .doOnTerminate { setIsLoading(false) }
             .subscribe(
-                { result -> onRetrieveAccountsSuccess(result.ProductResponses) },
+                { result -> onRetrieveAccountsSuccess(result) },
                 { error -> Log.e(RESULT, error.toString()) }
             )
     }
@@ -58,7 +58,6 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
         Log.i(RESULT, accountsList.toString())
         accountsListAdapter.updateAccountsList(accountsList)
     }
-
 
 
 }
