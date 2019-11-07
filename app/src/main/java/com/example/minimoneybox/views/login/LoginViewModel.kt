@@ -3,8 +3,8 @@ package com.example.minimoneybox.views.login
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.minimoneybox.data.manager.AppDataManager
-import com.example.minimoneybox.data.model.LoginParameters
-import com.example.minimoneybox.data.model.UserProfile
+import com.example.minimoneybox.data.model.postbody.Login
+import com.example.minimoneybox.data.model.response.login.UserProfile
 import com.example.minimoneybox.network.AccountApi
 import com.example.minimoneybox.utils.*
 import com.example.minimoneybox.views.base.BaseViewModel
@@ -19,6 +19,7 @@ class LoginViewModel: BaseViewModel() {
 
     @Inject
     lateinit var accountApi: AccountApi
+
     val errorMessage: MutableLiveData<Int> = MutableLiveData()
     val emailErrorMessage:MutableLiveData<String> = MutableLiveData()
     val passwordErrorMessage:MutableLiveData<String> = MutableLiveData()
@@ -45,7 +46,7 @@ class LoginViewModel: BaseViewModel() {
             subscription = Observable.fromCallable{}
                 .concatMap {
                     accountApi.loginUser(
-                        LoginParameters(
+                        Login(
 //                            enteredUserEmail.value.toString(),
 //                            enteredUserPassword.value.toString(),
                             "androidtest@moneyboxapp.com",
@@ -60,7 +61,7 @@ class LoginViewModel: BaseViewModel() {
                 .doOnTerminate { setIsLoading(false) }
                 .subscribe(
                     { result -> onLoginSuccess(result) },
-                    { error -> Log.e("RESULT", error.toString()) }
+                    { error -> Log.e(RESULT, error.toString()) }
                 )
        // }
     }
@@ -107,7 +108,7 @@ class LoginViewModel: BaseViewModel() {
     }
 
     private fun onLoginSuccess(result: UserProfile){
-        Log.i("RESULT", result.toString())
+        Log.i(RESULT, result.toString())
         AppDataManager
             .updateUserInfo(
                 result.Session.BearerToken,

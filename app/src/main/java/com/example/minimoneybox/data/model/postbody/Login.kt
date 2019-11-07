@@ -1,6 +1,6 @@
-package com.example.minimoneybox.data.model
+package com.example.minimoneybox.data.model.postbody
 
-data class LoginParameters (
+data class Login (
     val Email: String,
     val Password: String,
     val Idfa: String

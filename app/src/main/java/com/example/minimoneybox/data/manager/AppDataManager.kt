@@ -5,7 +5,6 @@ import com.example.minimoneybox.data.preferences.AppPreferencesHelper
 
 object AppDataManager{
     private val mPreferencesHelper =  AppPreferencesHelper
-    // val mApiHelper = ApiHelper
 
     fun updateUserInfo(
         accessToken: String?,
@@ -17,14 +16,15 @@ object AppDataManager{
         currentUserId = userId
         currentUserName = name
         currentUserEmail = email
-        // updateApiHeader(accessToken)
+        updateBearerToken(accessToken)
     }
+
+    private var BearerToken: String? = null
 
     private var accessToken: String?
         get() = mPreferencesHelper.accessToken
         set(accessToken) {
             mPreferencesHelper.accessToken = accessToken
-            // mApiHelper.getApiHeader().getProtectedApiHeader().setAccessToken(accessToken)
         }
 
     private var currentUserEmail: String?
@@ -45,7 +45,11 @@ object AppDataManager{
             mPreferencesHelper.currentUserName = userName
         }
 
-//    fun updateApiHeader(accessToken: String?) {
-//        mApiHelper.getApiHeader().getProtectedApiHeader().setAccessToken(accessToken)
-//    }
+    private fun updateBearerToken(accessToken: String?) {
+        BearerToken = "Bearer $accessToken"
+    }
+
+    fun getBearerToken(): String?{
+        return BearerToken
+    }
 }

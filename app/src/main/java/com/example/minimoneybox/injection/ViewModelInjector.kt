@@ -2,7 +2,7 @@ package com.example.minimoneybox.injection
 
 import com.example.minimoneybox.network.NetworkModule
 import com.example.minimoneybox.views.login.LoginViewModel
-import com.example.minimoneybox.views.useraccounts.AccountsViewModel
+import com.example.minimoneybox.views.accounts.AccountsViewModel
 import dagger.Component
 import javax.inject.Singleton
 

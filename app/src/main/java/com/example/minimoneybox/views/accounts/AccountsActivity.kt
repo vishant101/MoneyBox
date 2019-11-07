@@ -1,4 +1,4 @@
-package com.example.minimoneybox.views.useraccounts
+package com.example.minimoneybox.views.accounts
 
 import android.os.Bundle
 import androidx.annotation.StringRes

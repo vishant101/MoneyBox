@@ -10,11 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.minimoneybox.R
-import com.example.minimoneybox.data.preferences.AppPreferencesHelper
 import com.example.minimoneybox.databinding.ActivityLoginBinding
 import com.example.minimoneybox.injection.ViewModelFactory
-import com.example.minimoneybox.utils.PREF_FILENAME
-import com.example.minimoneybox.views.useraccounts.AccountsActivity
+import com.example.minimoneybox.views.accounts.AccountsActivity
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -29,8 +27,6 @@ class LoginActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?){
 
         super.onCreate(savedInstanceState)
-
-        AppPreferencesHelper.setUp(applicationContext, PREF_FILENAME)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
