@@ -7,8 +7,10 @@ import androidx.room.Room
 import com.example.minimoneybox.data.database.AppDatabase
 import com.example.minimoneybox.data.preferences.AppPreferencesHelper
 import com.example.minimoneybox.utils.PREF_FILENAME
+import com.example.minimoneybox.utils.PRODUCT_ID
 import com.example.minimoneybox.views.login.LoginViewModel
 import com.example.minimoneybox.views.accounts.AccountsViewModel
+import com.example.minimoneybox.views.individual_account.IndividualAccountViewModel
 
 
 class ViewModelFactory(private val activity: AppCompatActivity): ViewModelProvider.Factory{
@@ -23,6 +25,10 @@ class ViewModelFactory(private val activity: AppCompatActivity): ViewModelProvid
             modelClass.isAssignableFrom(AccountsViewModel::class.java) -> {
                 @Suppress("UNCHECKED_CAST")
                 return AccountsViewModel(db.productDao()) as T
+            }
+            modelClass.isAssignableFrom(IndividualAccountViewModel::class.java) -> {
+                @Suppress("UNCHECKED_CAST")
+                return IndividualAccountViewModel(db.productDao()) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class")

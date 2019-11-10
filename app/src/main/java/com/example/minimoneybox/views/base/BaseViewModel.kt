@@ -7,7 +7,7 @@ import com.example.minimoneybox.injection.ViewModelInjector
 import com.example.minimoneybox.network.NetworkModule
 import com.example.minimoneybox.views.login.LoginViewModel
 import com.example.minimoneybox.views.accounts.AccountsViewModel
-import com.example.minimoneybox.views.accounts.accountelement.AccountElementViewModel
+import com.example.minimoneybox.views.accounts.account_element.AccountElementViewModel
 
 abstract class BaseViewModel:ViewModel(){
     private val mIsLoading = ObservableBoolean()

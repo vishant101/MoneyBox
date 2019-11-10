@@ -16,6 +16,8 @@ const val FULL_NAME_ERROR = "Please enter your full name"
 // PARAMETERS
 const val IFDA = "ANYTHING"
 const val PREF_FILENAME = "app_preferences"
+const val PRODUCT_ID = "PRODUCT_ID"
 
 // TAGS
 const val RESULT = "Result"
+

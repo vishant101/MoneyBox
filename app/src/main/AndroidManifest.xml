@@ -26,6 +26,10 @@
             android:name=".views.accounts.AccountsActivity"
             android:launchMode="singleTop"
             />
+        <activity
+            android:name=".views.individual_account.IndividualAccountActivity"
+            android:launchMode="singleTop"
+            />
     </application>
 
 </manifest>

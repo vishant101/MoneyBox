@@ -6,12 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.minimoneybox.views.accounts.accountelement.AccountElementViewModel" />
+            type="com.example.minimoneybox.views.accounts.account_element.AccountElementViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.itemClicked()}"
         android:padding="2dp">
 
         <TextView

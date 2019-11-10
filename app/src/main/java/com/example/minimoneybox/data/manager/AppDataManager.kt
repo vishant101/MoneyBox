@@ -1,10 +1,15 @@
 package com.example.minimoneybox.data.manager
 
+import com.example.minimoneybox.data.model.response.investorproducts.ProductResponse
 import com.example.minimoneybox.data.preferences.AppPreferencesHelper
 
 
 object AppDataManager{
     private val mPreferencesHelper =  AppPreferencesHelper
+
+    fun updateSelectedProductId(productId: Int){
+        currentProductId = productId
+    }
 
     fun updateUserInfo(
         accessToken: String?,
@@ -43,6 +48,12 @@ object AppDataManager{
         get() = mPreferencesHelper.currentUserName
         set(userName) {
             mPreferencesHelper.currentUserName = userName
+        }
+
+    private var currentProductId: Int?
+        get() = mPreferencesHelper.currentProductId
+        set(productId) {
+            mPreferencesHelper.currentProductId = productId
         }
 
     private fun updateBearerToken(accessToken: String?) {
