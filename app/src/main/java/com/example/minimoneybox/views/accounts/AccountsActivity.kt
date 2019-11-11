@@ -39,6 +39,7 @@ class AccountsActivity : AppCompatActivity() {
 
     private fun showError(@StringRes errorMessage:Int){
         errorSnackbar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
+        errorSnackbar?.setAction(R.string.retry, viewModel.errorClickListener)
         errorSnackbar?.show()
     }
 

@@ -122,7 +122,7 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
             .doOnTerminate { setIsLoading(false) }
             .subscribe(
                 { result -> Log.i(RESULT, result.toString()) },
-                { error -> Log.e(RESULT, error.toString()) }
+                { error -> onAddError(error) }
             )
     }
 
