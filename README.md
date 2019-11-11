@@ -1,81 +1,37 @@
-# The Brief:
+# MoneyBox
+A mini version of the Moneybox app that will allow existing users to login, check their account and add money to their moneybox. The app is built with Rx Kotlin and mvvm architecture with android databindings. It also features dependancy injection via dagger and networking with retrofit. Room is used for the database.
 
-Create a mini version of the Moneybox app that will allow existing users to login, check their account and add money to their moneybox.
+## Getting Started
+1. Download and install android studio
 
-## Part A - Fix current bugs
+2. Clone the repo:
+- `git clone https://github.com/vishant101/MoneyBox.git`
 
-In this repository you will find LoginActivity that allows users to enter their username, password and optionally their name.  We have implemented a basic screen for you that validates username, password and name against simple regular expressions but makes no calls to the API.
+3. Snyc gradle 
 
-Unfortunately this screen has 3 bugs raised by our testers that they want you to fix and are listed below.  If you are struggling to fix any of these bugs, please give it your best attempt and then move onto the next bug or task.
+4. Run the messenger app on an emulator or device
 
-### Bug 1 - Layout does not look as expected
+## Screenshots
+| Login | Account Overview | Individual Account |
+|------|---------|-----|
+| <img src="https://github.com/vishant101/MoneyBox/blob/master/images/Login.png/" width="275" alt="Login" title="Login" /> | <img src="https://github.com/vishant101/MoneyBox/blob/master/images/AccountOverview.png" width="275" alt="AccountOverview" title="AccountOverview" /> | <img src="https://github.com/vishant101/MoneyBox/blob/master/images/IndividualAccount.png" width="275" alt="IndividualAccount" title="IndividualAccount" /> 
 
-Please re-arrange the views in the LoginActivity to match the expected layout.
+# Solution
 
-![](/images/correct_layout.png)
+## Part A - Bug Fixes
+### Bug 1 - Layout 
+This bug was fixed by adding constraints to the required elements. Padding was added where required. A change was also made to the android manifest so that the login button is not hidden when the software keyboard is opened.
+
 
 ### Bug 2 - Validation is incorrect
-If the input entered by the user is correct then they should see a toast saying “Input is valid!”.  However if it is not correct we should show an error on the field that is incorrect.  Below is the following validation logic:
-
-- Email is not optional and should match EMAIL_REGEX
-- Password is not optional and should match PASSWORD_REGEX
-- Name is optional, but if it contains any value it should match NAME_REGEX
-
-There is some validation logic in LoginActivity, but it is currently incorrect. Please implement this feature to match this logic.
+THe rule check was inverted so that it starts as true and any error changes the validation to false. In some cases the wrong variable was being checked these were amended. The error is also now cleared once the fields are correct for successive trys. Ideally i would have loved to databind the rules directly to the edittext views, however this was not part of the spec and I did not want to be penalized.
 
 ### Bug 3 - Animation is looping incorrectly
-
-Above the login button is an animation of an owl and a pig.  We would like this animation to play every time the user starts the activity and then loop indefinitely.  The logic for this animation should be as follows:
-
-- The animation should start from frame **0** to **109** when the user first starts the activity.  See below for animation.
-![](/images/firstpig.gif)
-- When the first stage of the animation has finished it should then loop from frame **131** to **158** continuously.  See below for animation.<br/>
-![](/images/secondpig.gif)
-
-To create animation in our app we use a helpful library called Lottie.  This has been added to the project for you, but currently it just plays the animation once and then stops.  Please implement the logic as described above.
-
-There is lots of helpful documentation on Lottie [here](http://airbnb.io/lottie/#/android).  Please take a look at this page for information on how to loop the animation, play from a min and max frame and detect when an animation ends.
+Simple fix by looping the animation from the correct frame start and end and then relooping from the correct position once the animation has finished. This was all achieved through databindings.
 
 ## Part B - Add 2 new screens
+### Architecture
 
-We now want to give some useful functionality to our users. To allow them to log into the app, view and edit their account using our sandbox API.
-
-### Screen 2 - User accounts screen
-This screen should be shown after the user has successfully logged in and should show have the following functionality:
-- Display "Hello {name} **only** if they provided it on previous screen"
-- Show the **'TotalPlanValue'** of a user.
-- Show the accounts the user holds, e.g. ISA, GIA, LISA, Pension.
-- Show all of those account's **'PlanValue'**.
-- Shhow all of those account's **'Moneybox'** total.
-
-### Screen 3 - Individual account screen
-If a user selects one of those accounts, they should then be taken to this screen.  This screen should have the following functionality:
-- Show the **'Name'** of the account.
-- Show the account's **'PlanValue'**.
-- Show the accounts **'Moneybox'** total.
-- Allow a user to add to a fixed value (e.g. £10) to their moneybox total.
-
-A prototype wireframe of all 3 screens is provided as a guideline. You are free to change any elements of the screen and provide additional information if you wish.
-
-![](/images/wireframe.png)
-
-## What we are looking for:
- - An android application written in either Java or Kotlin.
- - Demonstration of coding style and design patterns.
- - Knowledge of common android libraries and any others that you find useful.
- - Storage of data between screens.
- - Consistency of data between screens.
- - Error handling.
- - Any form of unit or integration testing you see fit.
- - The application must run on Android 5.0 and above.
- - The application must compile and run in Android Studio.
-
-Please feel free to refactor the LoginActivity and use any libraries/helper methods to make your life easier.
-
-## How to Submit your solution:
- - Clone this repository
- - Create a public repo in github, bitbucket or a suitable alternative and provide a link to the repository.
- - Provide a readme in markdown which details how you solved the bugs in part A, and explains the structure of your solution in Part B and any libraries that you may have used.
 
 ## API Usage
 This a brief summary of the api endpoints in the moneybox sandbox environment. There a lot of other additional properties from the json responses that are not relevant, but you must use these endpoints to retrieve the information needed for this application.
