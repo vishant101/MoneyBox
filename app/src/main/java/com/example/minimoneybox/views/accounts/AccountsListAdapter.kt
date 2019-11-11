@@ -55,5 +55,4 @@ class AccountsListAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             clickSubject.onNext(productResponse)
         }
     }
-
 }

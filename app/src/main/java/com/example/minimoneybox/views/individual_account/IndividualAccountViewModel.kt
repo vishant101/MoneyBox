@@ -31,6 +31,7 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
     private lateinit var dataUpdateSubscription: Disposable
 
     val backPressed = MutableLiveData<Boolean>()
+    var toastStatus = MutableLiveData<Boolean?>()
 
     val accountName = MutableLiveData<String>()
     val productResponse = MutableLiveData<ProductResponse>()
@@ -40,7 +41,6 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
     val quickAddString = MutableLiveData<String>()
     val addButtonEnabled = ObservableBoolean()
 
-    lateinit var onClickListener: OnItemClickListener
 
     init {
         loadAccount(AppDataManager.currentProductId)
@@ -144,5 +144,6 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
 
     private fun onAddError(error: Throwable){
         Log.e(RESULT, error.toString())
+        toastStatus.value =  true
     }
 }

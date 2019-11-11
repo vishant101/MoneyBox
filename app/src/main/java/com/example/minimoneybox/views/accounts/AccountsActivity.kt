@@ -32,6 +32,9 @@ class AccountsActivity : AppCompatActivity() {
         viewModel.selectedAccount.observe(this, Observer {
                 selectedAccount -> if(selectedAccount != null) openIndividualAccountActivity()
         })
+        viewModel.errorMessage.observe(this, Observer {
+                errorMessage -> if(errorMessage != null) showError(errorMessage) else hideError()
+        })
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
     }

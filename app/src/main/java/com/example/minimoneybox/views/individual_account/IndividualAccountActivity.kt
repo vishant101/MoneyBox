@@ -2,6 +2,7 @@ package com.example.minimoneybox.views.individual_account
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -25,6 +26,9 @@ class IndividualAccountActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(IndividualAccountViewModel::class.java)
         viewModel.backPressed.observe(this, Observer {
                 backPressed -> if(backPressed) openUserAccountsActivity()
+        })
+        viewModel.toastStatus.observe(this, Observer {
+                toastStatus -> toastStatus?.let { Toast.makeText(this, R.string.add_error, Toast.LENGTH_LONG).show() }
         })
         binding.viewModel = viewModel
         binding.lifecycleOwner = this

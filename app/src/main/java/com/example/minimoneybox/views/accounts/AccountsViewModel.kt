@@ -1,6 +1,7 @@
 package com.example.minimoneybox.views.accounts
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.example.minimoneybox.data.database.ProductDao
 import com.example.minimoneybox.data.manager.AppDataManager
@@ -23,6 +24,7 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
     val accountsListAdapter: AccountsListAdapter = AccountsListAdapter()
     val selectedAccount: MutableLiveData<ProductResponse> = MutableLiveData()
 
+    val errorMessage: MutableLiveData<Int> = MutableLiveData()
     val totalValue = MutableLiveData<String>()
     val totalEarnings = MutableLiveData<String>()
     val totalEarningsPercentage = MutableLiveData<String>()
@@ -32,13 +34,17 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
     private lateinit var dataSubscription: Disposable
     private lateinit var itemClickSubscription: Disposable
 
+    val errorClickListener = View.OnClickListener {
+        loadAccounts()
+        loadInvestmentData()
+    }
+
     init {
         loadAccounts()
         loadInvestmentData()
         if (AppDataManager.currentUserName  !=  "null"){
             userGreeting.value = "Hello ${AppDataManager.currentUserName}!"
         }
-
         setupItemClick()
     }
 
@@ -68,7 +74,7 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
             .doOnTerminate { setIsLoading(false) }
             .subscribe(
                 { result -> onRetrieveAccountsSuccess(result) },
-                { error -> Log.e(RESULT, error.toString()) }
+                { error -> onLoadError(error) }
             )
     }
 
@@ -83,8 +89,13 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
             .doOnTerminate { setIsLoading(false) }
             .subscribe(
                 { result ->  onRetrieveInvestmentDataSuccess(result)},
-                { error -> Log.e(RESULT, error.toString()) }
+                { error -> onLoadError(error) }
             )
+    }
+
+    private fun onLoadError(error: Throwable) {
+        Log.e(RESULT, error.toString())
+        errorMessage.value = com.example.minimoneybox.R.string.loading_error
     }
 
     private fun onRetrieveAccountsSuccess(accountsList: List<ProductResponse>) {

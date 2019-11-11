@@ -14,6 +14,10 @@
     <string name="input_valid">Input is valid!</string>
     <string name="login_error">Error logging in.</string>
 
+    <string name="loading_error">There was an error fetching data.</string>
+
+    <string name="add_error">An error occurred please try again.</string>
+
     <string name="QUICK_ADD_10">+£10</string>
     <string name="stocks_shares_isa">Stocks $ Shares ISA</string>
     <string name="_20000">$20000</string>
