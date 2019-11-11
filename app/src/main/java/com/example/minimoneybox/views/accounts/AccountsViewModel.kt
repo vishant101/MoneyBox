@@ -51,7 +51,6 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
     private fun loadAccounts(){
         subscription = Observable.fromCallable{ productDao.all }
             .concatMap {
-
                     dbAccountList ->
                 if(dbAccountList.isEmpty())
                     accountApi.getAccounts( AppDataManager.getBearerToken() ).concatMap {
@@ -74,7 +73,7 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
     }
 
     private fun loadInvestmentData(){
-        subscription = Observable.fromCallable{ productDao.getInvestorProducts() }
+        dataSubscription = Observable.fromCallable{ productDao.getInvestorProducts() }
             .concatMap {
                     dbInvestmentData-> Observable.just(dbInvestmentData)
             }
@@ -107,6 +106,4 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
                 AppDataManager.updateSelectedProductId(it.Id)
             }
     }
-
-
 }

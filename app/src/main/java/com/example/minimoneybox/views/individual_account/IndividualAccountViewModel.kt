@@ -30,6 +30,8 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
     private lateinit var addSubscription: Disposable
     private lateinit var dataUpdateSubscription: Disposable
 
+    val backPressed = MutableLiveData<Boolean>()
+
     val accountName = MutableLiveData<String>()
     val productResponse = MutableLiveData<ProductResponse>()
     val planValue = MutableLiveData<String>()
@@ -87,6 +89,10 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
            QUICK_ADD_AMOUNT,
            productResponseVal!!.Id
        )
+    }
+
+    fun backButtonClicked(){
+        backPressed.value = true
     }
 
     private fun quickAdd(amount: Int, productId: Int){

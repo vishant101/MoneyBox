@@ -164,8 +164,6 @@
             android:text="@string/quick_add"
             />
 
-
-
         <androidx.core.widget.ContentLoadingProgressBar
             android:id="@+id/address_looking_up"
             style="?android:attr/progressBarStyleLarge"
@@ -177,7 +175,31 @@
             app:layout_constraintRight_toRightOf="parent"
             android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:onClick="@{() -> viewModel.backButtonClicked()}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/baseline_arrow_back_ios_24"
+                android:layout_height="wrap_content">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                android:text="All Accounts"/>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
