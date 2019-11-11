@@ -37,7 +37,7 @@ Simple fix by looping the animation from the correct frame start and end and the
 
 ### Part B - Add 2 new screens
 #### Architecture
-
+Before adding the new screen the app was rebuilt into an mvvm architecture. this keeps UI code simple and free of app logic in order to make it easier to manage and test. Android databindings were uses so that the viewmodels have no refrence to the UI elemetents and thus can be tested independantly of the UI itself. An RX mindset was used to keep the app scalable going forward. Depenandancy inject was done via dagger so that components can be tested indepenantly without strong references. For networking I used retrofit a strong yet lightwieght client. To manage databetween the screens a room database was used. this keeps the data synced between screens. 
 
 ## API Usage
 This a brief summary of the api endpoints in the moneybox sandbox environment. There a lot of other additional properties from the json responses that are not relevant, but you must use these endpoints to retrieve the information needed for this application.
