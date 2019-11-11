@@ -3,7 +3,6 @@ package com.example.minimoneybox.views.individual_account
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -38,14 +37,5 @@ class IndividualAccountActivity : AppCompatActivity() {
         val intent = Intent(this@IndividualAccountActivity, AccountsActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    private fun showError(@StringRes errorMessage:Int){
-        errorSnackbar = Snackbar.make(binding.root, errorMessage, Snackbar.LENGTH_INDEFINITE)
-        errorSnackbar?.show()
-    }
-
-    private fun hideError(){
-        errorSnackbar?.dismiss()
     }
 }

@@ -42,17 +42,15 @@ class LoginViewModel: BaseViewModel() {
     }
 
     fun login() {
-        //if (allFieldsValid()) {
+        if (allFieldsValid()) {
             this.toastStatus.value = true
 
             subscription = Observable.fromCallable{}
                 .concatMap {
                     accountApi.loginUser(
                         Login(
-//                            enteredUserEmail.value.toString(),
-//                            enteredUserPassword.value.toString(),
-                            "androidtest@moneyboxapp.com",
-                            "P455word12",
+                            enteredUserEmail.value.toString(),
+                            enteredUserPassword.value.toString(),
                             IFDA
                         )
                     )
@@ -65,10 +63,10 @@ class LoginViewModel: BaseViewModel() {
                     { result -> onLoginSuccess(result) },
                     { error ->  onLoginError(error)}
                 )
-       // }
+        }
     }
 
-    fun allFieldsValid() : Boolean {
+    private fun allFieldsValid() : Boolean {
         var allValid = true
 
         if (!Pattern.matches(EMAIL_REGEX, enteredUserEmail.value.toString())) {

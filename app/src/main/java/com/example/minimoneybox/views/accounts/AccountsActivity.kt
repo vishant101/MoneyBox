@@ -9,10 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.minimoneybox.R
-import com.example.minimoneybox.data.model.response.investorproducts.ProductResponse
 import com.example.minimoneybox.databinding.ActivityAccountsBinding
 import com.example.minimoneybox.injection.ViewModelFactory
-import com.example.minimoneybox.utils.PRODUCT_ID
 import com.example.minimoneybox.views.individual_account.IndividualAccountActivity
 import com.google.android.material.snackbar.Snackbar
 
