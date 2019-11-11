@@ -11,6 +11,12 @@ A mini version of the Moneybox app that will allow existing users to login, chec
 
 4. Run the messenger app on an emulator or device
 
+5. Login using the following details
+
+|  Username          | Password         |
+| ------------- | ------------- |
+| androidtest@moneyboxapp.com  | P455word12  |
+
 ## Screenshots
 | Login | Account Overview | Individual Account |
 |------|---------|-----|
