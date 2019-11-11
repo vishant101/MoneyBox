@@ -22,21 +22,21 @@ A mini version of the Moneybox app that will allow existing users to login, chec
 |------|---------|-----|
 | <img src="https://github.com/vishant101/MoneyBox/blob/master/images/Login.png/" width="275" alt="Login" title="Login" /> | <img src="https://github.com/vishant101/MoneyBox/blob/master/images/AccountOverview.png" width="275" alt="AccountOverview" title="AccountOverview" /> | <img src="https://github.com/vishant101/MoneyBox/blob/master/images/IndividualAccount.png" width="275" alt="IndividualAccount" title="IndividualAccount" /> 
 
-# Solution
+## Solution
 
-## Part A - Bug Fixes
-### Bug 1 - Layout 
+### Part A - Bug Fixes
+#### Bug 1 - Layout 
 This bug was fixed by adding constraints to the required elements. Padding was added where required. A change was also made to the android manifest so that the login button is not hidden when the software keyboard is opened.
 
 
-### Bug 2 - Validation is incorrect
-THe rule check was inverted so that it starts as true and any error changes the validation to false. In some cases the wrong variable was being checked these were amended. The error is also now cleared once the fields are correct for successive trys. Ideally i would have loved to databind the rules directly to the edittext views, however this was not part of the spec and I did not want to be penalized.
+#### Bug 2 - Validation is incorrect
+THe rule check was inverted so that it starts as true and any error changes the validation to false. In some cases the wrong variable was being checked these were amended. The full name regex was wrong, this was changed to match the full name. The name field was also updated so that it is trimmed before errorchecking. The error is also now cleared once the fields are correct for successive trys. Ideally I would have loved to databind the rules directly to the edittext views, however this was not part of the spec and I did not want to be penalized.
 
-### Bug 3 - Animation is looping incorrectly
+#### Bug 3 - Animation is looping incorrectly
 Simple fix by looping the animation from the correct frame start and end and then relooping from the correct position once the animation has finished. This was all achieved through databindings.
 
-## Part B - Add 2 new screens
-### Architecture
+### Part B - Add 2 new screens
+#### Architecture
 
 
 ## API Usage
