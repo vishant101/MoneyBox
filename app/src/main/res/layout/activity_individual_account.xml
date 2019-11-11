@@ -16,42 +16,48 @@
         tools:context=".views.accounts.AccountsActivity"
         >
 
-        <LinearLayout
-            android:id="@+id/header"
-            android:layout_width="match_parent"
+
+
+        <TextView
+            android:id="@+id/account_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            android:text="@{viewModel.accountName}"
+            />
 
-            <TextView
-                android:id="@+id/account_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@{viewModel.accountName}"
-                />
+        <TextView
+            android:id="@+id/plan_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/account_name"
+            android:text="@{viewModel.planValue.toString()}"
+            />
 
-            <TextView
-                android:id="@+id/plan_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/account_name"
-                android:text="@{viewModel.planValue.toString()}"
-                />
+        <TextView
+            android:id="@+id/moneybox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/plan_value"
+            android:text="@{viewModel.moneyBox.toString()}"
+            />
 
-            <TextView
-                android:id="@+id/moneybox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/plan_value"
-                android:text="@{viewModel.moneyBox.toString()}"
-                />
-        </LinearLayout>
+        <Button
+            android:id="@+id/quickAddButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.quickAddString}"
+            android:hint="@string/QUICK_ADD_10"
+            android:enabled="@{viewModel.addButtonEnabled}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/moneybox"
+            android:onClick="@{() -> viewModel.addButtonClicked()}"
+            />
+
+
 
         <androidx.core.widget.ContentLoadingProgressBar
             android:id="@+id/address_looking_up"

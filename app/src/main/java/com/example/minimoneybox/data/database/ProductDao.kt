@@ -14,6 +14,12 @@ interface ProductDao {
     @Query("SELECT * FROM ProductResponse WHERE Id=:Id ")
     fun getProduct(Id: Int): ProductResponse
 
+    @Query("SELECT * FROM ProductResponse WHERE Id=:Id ")
+    fun getLiveProduct(Id: Int): LiveData<ProductResponse>
+
+    @Query("UPDATE ProductResponse SET Moneybox=:value WHERE Id=:Id")
+    fun updateMoneyBox(Id: Int, value: Float?)
+
     @Insert
     fun insertAll(vararg productResponses: ProductResponse)
 

@@ -4,8 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Personalisation (
+data class HideAccounts (
     @PrimaryKey
-    val QuickAddDeposit: QuickAddDeposit,
-    val HideAccounts: HideAccounts
+    val Enabled: Boolean,
+    val IsHidden: Boolean,
+    val Sequence: Int
 )

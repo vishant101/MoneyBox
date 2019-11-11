@@ -21,3 +21,6 @@ const val PRODUCT_ID = "PRODUCT_ID"
 // TAGS
 const val RESULT = "Result"
 
+// QUICK ADD
+const val QUICK_ADD_AMOUNT = 10
+

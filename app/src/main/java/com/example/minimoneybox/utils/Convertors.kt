@@ -11,6 +11,8 @@ class Converters {
     private val productType = object: TypeToken<Product>() {}.type
     private val investorAccountType = object: TypeToken<InvestorAccount>() {}.type
     private val personalisationType = object: TypeToken<Personalisation>() {}.type
+    private val quickAddDepositType = object: TypeToken<QuickAddDeposit>() {}.type
+    private val hideAccountsType = object: TypeToken<HideAccounts>() {}.type
 
     @TypeConverter
     fun stringToProduct(json: String): Product {
@@ -38,7 +40,27 @@ class Converters {
     }
 
     @TypeConverter
-    fun productToString(nestedData: Personalisation): String {
+    fun personalisationToString(nestedData: Personalisation): String {
         return gson.toJson(nestedData, personalisationType)
+    }
+
+    @TypeConverter
+    fun stringToQuickAddDeposit(json: String): QuickAddDeposit {
+        return gson.fromJson(json, quickAddDepositType)
+    }
+
+    @TypeConverter
+    fun quickAddDepositToString(nestedData: QuickAddDeposit): String {
+        return gson.toJson(nestedData, quickAddDepositType)
+    }
+
+    @TypeConverter
+    fun stringToHideAccounts(json: String): HideAccounts {
+        return gson.fromJson(json, hideAccountsType)
+    }
+
+    @TypeConverter
+    fun hideAccountsToString(nestedData: HideAccounts): String {
+        return gson.toJson(nestedData, hideAccountsType)
     }
 }
