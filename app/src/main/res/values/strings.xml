@@ -21,4 +21,16 @@
     <string name="_10_71">$10.71</string>
     <string name="this_week">this week</string>
     <string name="_10_87">$10.87</string>
+    <string name="total_value">Total Value</string>
+    <string name="investments">Investments</string>
+    <string name="your_accounts">Your accounts</string>
+    <string name="lifetime_isa">Lifetime ISA</string>
+    <string name="_13_77">+13.77%</string>
+    <string name="_407_75">+407.75</string>
+    <string name="total_earnings">Total Earnings</string>
+    <string name="_3_368_75">$3,368.75</string>
+    <string name="plan_value">Plan Value:</string>
+    <string name="_1_164_63">$1,164.63</string>
+    <string name="moneybox">Moneybox: </string>
+    <string name="_20">$20</string>
 </resources>

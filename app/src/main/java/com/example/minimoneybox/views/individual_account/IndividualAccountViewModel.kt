@@ -13,6 +13,7 @@ import com.example.minimoneybox.network.AccountApi
 import com.example.minimoneybox.utils.OnItemClickListener
 import com.example.minimoneybox.utils.QUICK_ADD_AMOUNT
 import com.example.minimoneybox.utils.RESULT
+import com.example.minimoneybox.utils.round
 import com.example.minimoneybox.views.base.BaseViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -29,8 +30,6 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
     private lateinit var addSubscription: Disposable
     private lateinit var dataUpdateSubscription: Disposable
 
-    private var liveProductResponse: LiveData<ProductResponse>? = null
-
     val accountName = MutableLiveData<String>()
     val productResponse = MutableLiveData<ProductResponse>()
     val planValue = MutableLiveData<String>()
@@ -43,8 +42,6 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
 
     init {
         loadAccount(AppDataManager.currentProductId)
-        liveProductResponse = productDao.getLiveProduct(AppDataManager.currentProductId)
-
     }
 
     override fun onCleared() {
@@ -83,11 +80,6 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
         addButtonEnabled.set(true)
     }
 
-    private fun round(d: Float, decimalPlace: Int): BigDecimal {
-        var bd = BigDecimal(d.toString())
-        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP)
-        return bd
-    }
 
     fun addButtonClicked(){
        val productResponseVal = productResponse.value

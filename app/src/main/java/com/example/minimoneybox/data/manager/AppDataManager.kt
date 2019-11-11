@@ -44,7 +44,7 @@ object AppDataManager{
             mPreferencesHelper.currentUserId = userId
         }
 
-    private var currentUserName: String?
+    var currentUserName: String?
         get() = mPreferencesHelper.currentUserName
         set(userName) {
             mPreferencesHelper.currentUserName = userName

@@ -12,8 +12,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> viewModel.itemClicked()}"
-        android:padding="2dp">
+        android:layout_marginTop="@dimen/activity_vertical_margin_small"
+        android:layout_marginBottom="@dimen/activity_vertical_margin_small"
+        android:background="@drawable/background_account"
+        android:onClick="@{() -> viewModel.itemClicked()}">
 
         <TextView
             android:id="@+id/account_name"
@@ -22,25 +24,81 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@{viewModel.accountName}"
-             />
-
-        <TextView
-            android:id="@+id/plan_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/account_name"
-            android:text="@{viewModel.planValue}"
+            android:textSize="22sp"
+            android:hint="@string/lifetime_isa"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin_small"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
             />
 
-        <TextView
-            android:id="@+id/moneybox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:id="@+id/plan_value_section"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingBottom="8dp"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/plan_value"
-            android:text="@{viewModel.moneyBox}"
-            />
+            app:layout_constraintTop_toBottomOf="@id/account_name">
+
+            <TextView
+                android:id="@+id/current_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plan_value"
+                />
+
+            <TextView
+                android:id="@+id/plan_value"
+                android:paddingStart="@dimen/activity_horizontal_margin_small"
+                android:paddingEnd="@dimen/activity_horizontal_margin_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.planValue}"
+                android:hint="@string/_1_164_63"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/plan_value_section">
+
+            <TextView
+                android:id="@+id/moneybox_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/moneybox"
+                />
+
+            <TextView
+                android:id="@+id/moneybox"
+                android:paddingStart="@dimen/activity_horizontal_margin_small"
+                android:paddingEnd="@dimen/activity_horizontal_margin_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/plan_value"
+                android:text="@{viewModel.moneyBox}"
+                android:hint="@string/_20"
+                />
+
+        </LinearLayout>
+
+
+
+
+
+
 
 
 

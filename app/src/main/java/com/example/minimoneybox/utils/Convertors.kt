@@ -8,11 +8,33 @@ import com.google.gson.reflect.TypeToken
 
 class Converters {
     private val gson = Gson()
+    private val investorProductType = object: TypeToken<InvestorProducts>() {}.type
+    private val productResponseType = object: TypeToken<List<ProductResponse>>() {}.type
     private val productType = object: TypeToken<Product>() {}.type
     private val investorAccountType = object: TypeToken<InvestorAccount>() {}.type
     private val personalisationType = object: TypeToken<Personalisation>() {}.type
     private val quickAddDepositType = object: TypeToken<QuickAddDeposit>() {}.type
     private val hideAccountsType = object: TypeToken<HideAccounts>() {}.type
+
+    @TypeConverter
+    fun stringToInvestorProducts(json: String): InvestorProducts {
+        return gson.fromJson(json, investorProductType)
+    }
+
+    @TypeConverter
+    fun investorProductsToString(nestedData: InvestorProducts): String {
+        return gson.toJson(nestedData, investorProductType)
+    }
+
+    @TypeConverter
+    fun stringToProductResponse(json: String): List<ProductResponse> {
+        return gson.fromJson(json, productResponseType)
+    }
+
+    @TypeConverter
+    fun productResponseToString(nestedData: List<ProductResponse>): String {
+        return gson.toJson(nestedData, productResponseType)
+    }
 
     @TypeConverter
     fun stringToProduct(json: String): Product {
