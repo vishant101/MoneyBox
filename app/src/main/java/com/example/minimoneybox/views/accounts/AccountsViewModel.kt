@@ -42,7 +42,7 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
     init {
         loadAccounts()
         loadInvestmentData()
-        if (AppDataManager.currentUserName  !=  "null"){
+        if (!AppDataManager.currentUserName.isNullOrEmpty() && AppDataManager.currentUserName !=  "null"  ){
             userGreeting.value = "Hello ${AppDataManager.currentUserName}!"
         }
         setupItemClick()

@@ -84,7 +84,7 @@ class LoginViewModel: BaseViewModel() {
         }
 
         if(!enteredUserName.value.isNullOrEmpty()) {
-            if (!Pattern.matches(NAME_REGEX, enteredUserName.value.toString())) {
+            if (!Pattern.matches(NAME_REGEX, enteredUserName.value.toString().trim())) {
                 allValid = false
                 nameErrorMessage.value = FULL_NAME_ERROR
             }

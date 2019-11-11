@@ -5,7 +5,7 @@ const val BASE_URL: String = "https://api-test01.moneyboxapp.com"
 
 // REGEX
 const val EMAIL_REGEX = "[^@]+@[^.]+\\..+"
-const val NAME_REGEX = "[a-zA-Z]{6,30}"
+const val NAME_REGEX = "(\\b[A-Z]{1}[a-z]+)( )([A-Z]{1}[a-z]+\\b)"
 const val PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[A-Z]).{10,50}$"
 
 // ERRORS
