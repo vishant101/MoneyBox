@@ -50,7 +50,7 @@ object AppDataManager{
             mPreferencesHelper.currentUserName = userName
         }
 
-    private var currentProductId: Int?
+    var currentProductId: Int
         get() = mPreferencesHelper.currentProductId
         set(productId) {
             mPreferencesHelper.currentProductId = productId

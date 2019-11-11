@@ -42,5 +42,7 @@
             android:text="@{viewModel.moneyBox}"
             />
 
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

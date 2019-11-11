@@ -33,7 +33,7 @@ object AppPreferencesHelper {
         get() = mPrefs.getString(PREF_KEY_CURRENT_USER_NAME, null)
         set(userName) = mPrefs.edit().putString(PREF_KEY_CURRENT_USER_NAME, userName).apply()
 
-    var currentProductId: Int?
+    var currentProductId: Int
         get() = mPrefs.getInt(PREF_KEY_CURRENT_PRODUCT_ID, 0)
-        set(productId) = mPrefs.edit().putInt(PREF_KEY_CURRENT_PRODUCT_ID, productId!!).apply()
+        set(productId) = mPrefs.edit().putInt(PREF_KEY_CURRENT_PRODUCT_ID, productId).apply()
 }

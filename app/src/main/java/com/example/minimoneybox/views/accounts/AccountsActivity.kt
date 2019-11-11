@@ -30,7 +30,7 @@ class AccountsActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(AccountsViewModel::class.java)
         viewModel.selectedAccount.observe(this, Observer {
-                selectedAccount -> if(selectedAccount != null) openIndividualAccountActivity(productResponse = selectedAccount)
+                selectedAccount -> if(selectedAccount != null) openIndividualAccountActivity()
         })
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -45,7 +45,7 @@ class AccountsActivity : AppCompatActivity() {
         errorSnackbar?.dismiss()
     }
 
-    private fun openIndividualAccountActivity(productResponse: ProductResponse) {
+    private fun openIndividualAccountActivity() {
         val intent = Intent(this@AccountsActivity, IndividualAccountActivity::class.java)
         startActivity(intent)
         finish()

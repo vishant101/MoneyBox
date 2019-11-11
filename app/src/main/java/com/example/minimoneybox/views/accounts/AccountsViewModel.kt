@@ -67,7 +67,10 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
 
     private fun setupItemClick() {
         itemClickSubscription = accountsListAdapter.clickEvent
-            .subscribe { selectedAccount.value = it }
+            .subscribe {
+                selectedAccount.value = it
+                AppDataManager.updateSelectedProductId(it.Id)
+            }
     }
 
 

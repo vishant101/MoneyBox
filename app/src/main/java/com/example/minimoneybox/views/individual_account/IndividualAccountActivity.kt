@@ -1,7 +1,6 @@
 package com.example.minimoneybox.views.individual_account
 
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -9,7 +8,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.minimoneybox.R
 import com.example.minimoneybox.databinding.ActivityIndividualAccountBinding
 import com.example.minimoneybox.injection.ViewModelFactory
-import com.example.minimoneybox.utils.PRODUCT_ID
 import com.google.android.material.snackbar.Snackbar
 
 
