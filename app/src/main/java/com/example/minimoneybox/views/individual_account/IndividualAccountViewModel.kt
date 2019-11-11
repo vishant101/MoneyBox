@@ -18,6 +18,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import java.math.BigDecimal
 import javax.inject.Inject
 
 
@@ -32,8 +33,9 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
 
     val accountName = MutableLiveData<String>()
     val productResponse = MutableLiveData<ProductResponse>()
-    val planValue = MutableLiveData<Float>()
-    val moneyBox = MutableLiveData<Float>()
+    val planValue = MutableLiveData<String>()
+    val moneyBox = MutableLiveData<String>()
+    val collections = MutableLiveData<String>()
     val quickAddString = MutableLiveData<String>()
     val addButtonEnabled = ObservableBoolean()
 
@@ -73,11 +75,18 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
         Log.i(RESULT, account.toString())
         productResponse.value = account
         accountName.value = account.Product.FriendlyName
-        planValue.value = account.PlanValue
-        moneyBox.value = account.Moneybox
+        planValue.value = "£${round(account.PlanValue, 2)}"
+        moneyBox.value = "£${round(account.Moneybox, 2)}"
         quickAddString.value = "+£$QUICK_ADD_AMOUNT"
+        collections.value = account.CollectionDayMessage
         setIsLoading(false)
         addButtonEnabled.set(true)
+    }
+
+    private fun round(d: Float, decimalPlace: Int): BigDecimal {
+        var bd = BigDecimal(d.toString())
+        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP)
+        return bd
     }
 
     fun addButtonClicked(){

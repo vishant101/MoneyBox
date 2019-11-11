@@ -16,45 +16,152 @@
         tools:context=".views.accounts.AccountsActivity"
         >
 
-
-
-        <TextView
-            android:id="@+id/account_name"
+        <LinearLayout
+            android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@{viewModel.accountName}"
-            />
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/rectangle_view"
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/header_rectangle"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/account_name"
+                    android:textColor="@color/light_green"
+                    android:textSize="22sp"
+                    android:hint="@string/stocks_shares_isa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.accountName}"
+                    />
+
+                <TextView
+                    android:id="@+id/plan_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/_20000"
+                    app:layout_constraintTop_toBottomOf="@id/account_name"
+                    android:text="@{viewModel.planValue}"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/savedAmount"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="80dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header"
+            android:background="@drawable/saved_amount_circle"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/saved"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/saved"
+                    android:textColor="@color/white"
+                    />
+
+                <TextView
+                    android:id="@+id/moneybox"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeMaxTextSize="28sp"
+                    app:autoSizeStepGranularity="2sp"
+                    android:gravity="center"
+                    android:hint="@string/_10_87"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/header"
+                    android:text="@{viewModel.moneyBox}"
+                    />
+
+                <TextView
+                    android:id="@+id/this_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:text="@string/this_week"
+                    />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/plan_value"
+            android:id="@+id/collections_string"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/account_name"
-            android:text="@{viewModel.planValue.toString()}"
-            />
-
-        <TextView
-            android:id="@+id/moneybox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/plan_value"
-            android:text="@{viewModel.moneyBox.toString()}"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/savedAmount"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:hint="@string/_6_days_until_collection"
+            android:text="@{viewModel.collections}"
             />
 
         <Button
-            android:id="@+id/quickAddButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/quick_add_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
             android:text="@{viewModel.quickAddString}"
+            android:textColor="@drawable/quick_add_text_color"
             android:hint="@string/QUICK_ADD_10"
             android:enabled="@{viewModel.addButtonEnabled}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/moneybox"
+            android:background="@drawable/background_button_individual_account"
+            app:layout_constraintTop_toBottomOf="@id/collections_string"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             android:onClick="@{() -> viewModel.addButtonClicked()}"
+            />
+
+        <TextView
+            android:id="@+id/quick_add_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/quick_add_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="@string/quick_add"
             />
 
 

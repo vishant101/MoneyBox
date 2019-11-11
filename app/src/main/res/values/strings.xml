@@ -13,4 +13,12 @@
     <string name="full_name_error">Please enter your full name</string>
     <string name="input_valid">Input is valid!</string>
     <string name="QUICK_ADD_10">+£10</string>
+    <string name="stocks_shares_isa">Stocks $ Shares ISA</string>
+    <string name="_20000">$20000</string>
+    <string name="quick_add">Quick Add</string>
+    <string name="_6_days_until_collection">6 days until collection</string>
+    <string name="saved">Saved</string>
+    <string name="_10_71">$10.71</string>
+    <string name="this_week">this week</string>
+    <string name="_10_87">$10.87</string>
 </resources>
