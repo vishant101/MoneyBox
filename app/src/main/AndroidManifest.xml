@@ -23,16 +23,13 @@
 
         </activity>
         <activity
-            android:name=".views.accounts.AccountsActivity">
-
-        </activity>
+            android:name=".views.accounts.AccountsActivity"
+            android:launchMode="singleTop"
+            />
         <activity
-            android:name=".views.individual_account.IndividualAccountActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.minimoneybox.views.accounts.AccountsActivity" />
-        </activity>
-
+            android:name=".views.individual_account.IndividualAccountActivity"
+            android:launchMode="singleTop"
+            />
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.minimoneybox.views.login
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.example.minimoneybox.data.manager.AppDataManager
 import com.example.minimoneybox.data.model.postbody.Login
@@ -27,6 +28,7 @@ class LoginViewModel: BaseViewModel() {
     val loggedIn: MutableLiveData<Boolean> = MutableLiveData()
 
     var toastStatus = MutableLiveData<Boolean?>()
+    val errorClickListener = View.OnClickListener { login() }
 
     private val enteredUserEmail = MutableLiveData<String>()
     private val enteredUserPassword = MutableLiveData<String>()
@@ -61,7 +63,7 @@ class LoginViewModel: BaseViewModel() {
                 .doOnTerminate { setIsLoading(false) }
                 .subscribe(
                     { result -> onLoginSuccess(result) },
-                    { error -> Log.e(RESULT, error.toString()) }
+                    { error ->  onLoginError(error)}
                 )
        // }
     }
@@ -117,5 +119,10 @@ class LoginViewModel: BaseViewModel() {
                 enteredUserEmail.value.toString()
             )
         loggedIn.value =  true
+    }
+
+    private fun onLoginError(error: Throwable){
+        Log.e(RESULT, error.toString())
+        errorMessage.value = com.example.minimoneybox.R.string.login_error
     }
 }
