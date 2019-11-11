@@ -38,7 +38,7 @@ class LoginViewModel: BaseViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        subscription.dispose()
+        if(::subscription.isInitialized) subscription.dispose()
     }
 
     fun login() {

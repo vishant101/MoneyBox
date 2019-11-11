@@ -50,8 +50,8 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        subscription.dispose()
-        itemClickSubscription.dispose()
+        if(::subscription.isInitialized) subscription.dispose()
+        if(::itemClickSubscription.isInitialized) itemClickSubscription.dispose()
     }
 
     private fun loadAccounts(){

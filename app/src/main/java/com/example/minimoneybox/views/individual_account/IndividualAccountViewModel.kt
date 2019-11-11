@@ -48,9 +48,9 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
 
     override fun onCleared() {
         super.onCleared()
-        subscription.dispose()
-        addSubscription.dispose()
-        dataUpdateSubscription.dispose()
+        if(::subscription.isInitialized) subscription.dispose()
+        if(::addSubscription.isInitialized) addSubscription.dispose()
+        if(::dataUpdateSubscription.isInitialized) dataUpdateSubscription.dispose()
     }
 
     private fun loadAccount(Id: Int){
@@ -81,7 +81,6 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
         setIsLoading(false)
         addButtonEnabled.set(true)
     }
-
 
     fun addButtonClicked(){
        val productResponseVal = productResponse.value
