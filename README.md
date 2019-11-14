@@ -45,7 +45,7 @@ The UI was built to look as close to screenshots for the Moneybox app from the g
 ## API Usage
 This a brief summary of the api endpoints in the moneybox sandbox environment. There a lot of other additional properties from the json responses that are not relevant, but you must use these endpoints to retrieve the information needed for this application.
 
-## Headers and Authentication
+### Headers and Authentication
 #### Base URL & Test User
 The base URL for the moneybox sandbox environment is `https://api-test01.moneyboxapp.com/`.
 You can log into test your app using the following user:
