@@ -45,6 +45,7 @@ The UI was built to look as close to screenshots for the Moneybox app from the g
 ## API Usage
 This a brief summary of the api endpoints in the moneybox sandbox environment. There a lot of other additional properties from the json responses that are not relevant, but you must use these endpoints to retrieve the information needed for this application.
 
+## Headers and Authentication
 #### Base URL & Test User
 The base URL for the moneybox sandbox environment is `https://api-test01.moneyboxapp.com/`.
 You can log into test your app using the following user:
@@ -64,8 +65,8 @@ In order to make requests https must be used and the following headers must be i
 | appVersion | 5.10.0 |
 | apiVersion | 3.0.0 |
 
-#### Authentication
-To login with this user to retrieve a bearer token you need to call `POST /users/login`.
+### API Calls
+#### Login
 ```
 POST /users/login
 {
@@ -90,11 +91,11 @@ After obtaining a bearer token an Authorization header must be provided for all 
 | Authorization  | Bearer TsMWRkbrcu3NGrpf84gi2+pg0iOMVymyKklmkY0oI84=  |
 
 #### Investor Products
-Provides product and account information for a user that will be needed for the two additional screens.
+Provides product and account information for a user.
 ```
 GET /investorproducts
 ```
-### One off payments
+#### One off payments
 Adds a one off amount to the users moneybox.
 ```
 POST /oneoffpayments
@@ -103,4 +104,3 @@ POST /oneoffpayments
   "InvestorProductId": 3230 ------> The InvestorProductId from /investorproducts endpoint
 }
 ```
-Good luck!
