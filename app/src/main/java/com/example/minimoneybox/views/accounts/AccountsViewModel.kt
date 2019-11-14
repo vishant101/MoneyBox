@@ -16,6 +16,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import io.reactivex.disposables.CompositeDisposable
+
+
 
 
 class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
@@ -30,9 +33,9 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
     val totalEarningsPercentage = MutableLiveData<String>()
     val userGreeting =  MutableLiveData<String>()
 
-    private lateinit var subscription: Disposable
-    private lateinit var dataSubscription: Disposable
-    private lateinit var itemClickSubscription: Disposable
+    private var subscription: Disposable? = null
+    private var dataSubscription: Disposable? = null
+    private var itemClickSubscription: Disposable? = null
 
     val errorClickListener = View.OnClickListener {
         loadAccounts()
@@ -50,8 +53,8 @@ class AccountsViewModel(private val productDao: ProductDao): BaseViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        if(::subscription.isInitialized) subscription.dispose()
-        if(::itemClickSubscription.isInitialized) itemClickSubscription.dispose()
+        subscription?.dispose()
+        itemClickSubscription?.dispose()
     }
 
     private fun loadAccounts(){

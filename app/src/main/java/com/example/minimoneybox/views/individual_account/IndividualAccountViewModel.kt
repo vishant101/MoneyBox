@@ -26,9 +26,9 @@ import javax.inject.Inject
 class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewModel() {
     @Inject
     lateinit var accountApi: AccountApi
-    private lateinit var subscription: Disposable
-    private lateinit var addSubscription: Disposable
-    private lateinit var dataUpdateSubscription: Disposable
+    private var subscription: Disposable? = null
+    private var addSubscription: Disposable? = null
+    private var dataUpdateSubscription: Disposable? = null
 
     val backPressed = MutableLiveData<Boolean>()
     var toastStatus = MutableLiveData<Boolean?>()
@@ -48,9 +48,9 @@ class IndividualAccountViewModel(private val productDao: ProductDao): BaseViewMo
 
     override fun onCleared() {
         super.onCleared()
-        if(::subscription.isInitialized) subscription.dispose()
-        if(::addSubscription.isInitialized) addSubscription.dispose()
-        if(::dataUpdateSubscription.isInitialized) dataUpdateSubscription.dispose()
+        subscription?.dispose()
+        addSubscription?.dispose()
+        dataUpdateSubscription?.dispose()
     }
 
     private fun loadAccount(Id: Int){

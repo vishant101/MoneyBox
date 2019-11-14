@@ -1,8 +1,6 @@
 package com.example.minimoneybox.data.manager
 
-import com.example.minimoneybox.data.model.response.investorproducts.ProductResponse
 import com.example.minimoneybox.data.preferences.AppPreferencesHelper
-
 
 object AppDataManager{
     private val mPreferencesHelper =  AppPreferencesHelper

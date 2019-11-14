@@ -34,11 +34,11 @@ class LoginViewModel: BaseViewModel() {
     private val enteredUserPassword = MutableLiveData<String>()
     private val enteredUserName = MutableLiveData<String>()
 
-    private lateinit var subscription: Disposable
+    private var subscription: Disposable? = null
 
     override fun onCleared() {
         super.onCleared()
-        if(::subscription.isInitialized) subscription.dispose()
+        subscription?.dispose()
     }
 
     fun login() {
