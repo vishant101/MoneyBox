@@ -9,7 +9,7 @@ A mini version of the Moneybox app that will allow existing users to login, chec
 
 3. Snyc gradle 
 
-4. Run the messenger app on an emulator or device
+4. Run the app on an emulator or device
 
 5. Login using the following details
 
